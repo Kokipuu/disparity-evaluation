@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 dir_path = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/data-processing/'
-image_path = 'rotate_rec.png'
+image_path = 'rotate_0828_Am1040_disparity.png'
 path_name = dir_path + image_path
 
 # 画像の読み込み
@@ -19,7 +19,7 @@ img = cv.imread(path_name, cv.IMREAD_GRAYSCALE)
 img_hist = cv.calcHist([img], [0], None, [256], [0, 256])
 plt.plot(img_hist)
 plt.show()
-# plt.savefig("hist.png")
+# plt.savefig('b_B_p_G_0828_Am1049.png')
 
 # 画像の平均値
 img_average = np.average(img)

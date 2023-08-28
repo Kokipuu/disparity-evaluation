@@ -67,11 +67,10 @@ class Rectangle:
             print("Unsupported shape type")
 
     def draw(self):
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(21, 29.7), dpi=100)
         ax.set_xlim(0, self.width)
         ax.set_ylim(0, self.height)
         ax.axis("off")
-
 
         for shape in self.shapes:
             shape_type = shape["type"]
@@ -89,13 +88,13 @@ class Rectangle:
                 ax.set_ylim(center[1] - size - 1, center[1] + size + 1)
                 ax.add_patch(triangle)
             elif shape_type == "rectangle":
-                # angle = np.random.uniform(0, 90)  # if angle is to 0, rectangle does't rotate. 
-                angle = 0
+                angle = np.random.uniform(0, 90)  # if angle is to 0, rectangle does't rotate. 
+                # angle = 0
                 rect = MatplotlibRectangle((position[0] - size[0]/2, position[1] - size[1]/2), size[0], size[1], angle = angle, color="black")
                 ax.add_patch(rect)
 
         plt.gca().set_aspect('equal', adjustable='box')
-        # plt.savefig('pattern/not_rotation.png')
+        plt.savefig('pattern/rotation.png')
         plt.show()
 
 
@@ -125,11 +124,11 @@ def genareta_radom_size(size, shape_type, seed):
 
 
 if __name__ == '__main__':
-    WIDTH, HEIGHT = 21*100, 29*100
-    X_RANGE, Y_RANGE = WIDTH, HEIGHT
+    WIDTH, HEIGHT = 21, 29
+    X_RANGE, Y_RANGE = 21, 29
     SEED = 10
-    SIZE = 0.3*100
     NUM = 500
+    SIZE = 0.3
     SHAPE_TYPE = "rectangle"
 
     np.random.seed(SEED)
