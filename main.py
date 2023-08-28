@@ -82,13 +82,7 @@ def generate_raw(file_path, output_folder):
 ####################################################################################################################
 
 
-def image_cut(image_file_path, output_folder):
-
-    # 検証用紙の切り抜き部分
-    Top = 450
-    Bottom = 550
-    Left = 920
-    Right = 1100
+def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
 
     # 画像ファイルの拡張子
     image_extension = ".png"
@@ -196,11 +190,20 @@ def remove_zeros_and_get_indices(arr):
 
 if __name__ == "__main__":
     
+    """検証用紙の切り抜き部分(要調整)"""
+    Top = 450
+    Bottom = 550
+    Left = 920
+    Right = 1100
+    
     # ドラッグ&ドロップされたパスを処理
     for path in sys.argv[1:]:
+        # raw 画像の生成
         generate_raw(path, folder_path_raw)
     
-    image_cut(folder_path_raw, folder_path_cut)
+    # raw画像のトリミング
+    image_cut(folder_path_raw, folder_path_cut, Top, Bottom, Left, Right)
+    # ヒストグラムと、その他統計値の取得
     generate_histgram(folder_path_cut, folder_path_hist, folder_path_data)
 
 
