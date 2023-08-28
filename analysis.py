@@ -3,6 +3,7 @@ import csv
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 
 # 輝度値の割合
@@ -31,11 +32,22 @@ image_files = [f for f in os.listdir(image_dir) if f.endswith(image_extension)]
 # csvファイルの出力先のファイル
 output_csv = "percentage"
 
-# with open('data/roll_yaw3/rawdata_nw.csv', 'a') as f:
-#     writer = csv.writer(f)
-#     writer.writerow(test_list1)
-#     writer.writerow(test_list2)
+# フォルダを生成するディレクトリのパスを指定
+output_directory_histgram = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/histgram/'
+output_directory_percentage = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/percentage/'
 
+# 現在の日付と時間を取得
+current_datetime = datetime.datetime.now()
+date_str = current_datetime.strftime('%Y-%m-%d')
+time_str = current_datetime.strftime('%H-%M-%S')
+# フォルダ名を生成
+folder_name = f'{date_str}_{time_str}'
+# フォルダの絶対パスを生成
+folder_path_histgram = os.path.join(output_directory_histgram, folder_name)
+folder_path_percentage = os.path.join(output_directory_percentage, folder_name)
+# フォルダを生成
+os.makedirs(folder_path_histgram)
+os.makedirs(folder_path_percentage)
 
 
 # リスト内の画像ファイルを順に処理
@@ -56,7 +68,7 @@ for image_file in image_files:
         # 出力する画像の名前
         output_filename = f"{image_file}"
         # 出力する画像のパス
-        output_path_image = os.path.join(output_dir, output_filename)
+        output_path_image = os.path.join(folder_path_histgram, output_filename)
         # 画像の保存
         plt.savefig(output_path_image)
         # 出力した画像の名前を表示
