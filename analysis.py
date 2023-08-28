@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 dir_path = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/data-processing/'
-image_path = 'rotate_0828_Am1040_disparity.png'
+image_path = 'ra_and_shu_pattern.png'
 path_name = dir_path + image_path
 
 # 画像の読み込み

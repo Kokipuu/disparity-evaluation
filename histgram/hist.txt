@@ -1,0 +1,41 @@
+rotate_0828_Am1040_disparity.png
+19.121555555555556
+35.78353131170543
+Luminance: 10, ratio: 92.4000015258789 %
+Luminance: 74, ratio: 3.700000047683716 %
+Luminance: 76, ratio: 0.10000000149011612 %
+Luminance: 133, ratio: 0.10000000149011612 %
+Luminance: 138, ratio: 0.5 %
+Luminance: 192, ratio: 0.4000000059604645 %
+Luminance: 194, ratio: 0.20000000298023224 %
+Luminance: 196, ratio: 0.5 %
+Luminance: 197, ratio: 0.20000000298023224 %
+Luminance: 199, ratio: 0.20000000298023224 %
+Luminance: 202, ratio: 0.8999999761581421 %
+Luminance: 204, ratio: 0.20000000298023224 %
+Luminance: 205, ratio: 0.10000000149011612 %
+Luminance: 206, ratio: 0.20000000298023224 %
+Luminance: 207, ratio: 0.10000000149011612 %
+
+
+
+without_rotate_0828Am1040_disparity.png
+19.871111111111112
+38.245784791542555
+Luminance: 10, ratio: 92.30000305175781 %
+Luminance: 73, ratio: 0.10000000149011612 %
+Luminance: 74, ratio: 3.200000047683716 %
+Luminance: 138, ratio: 0.6000000238418579 %
+Luminance: 192, ratio: 0.20000000298023224 %
+Luminance: 193, ratio: 0.10000000149011612 %
+Luminance: 194, ratio: 0.10000000149011612 %
+Luminance: 196, ratio: 0.10000000149011612 %
+Luminance: 197, ratio: 0.10000000149011612 %
+Luminance: 198, ratio: 0.10000000149011612 %
+Luminance: 199, ratio: 0.10000000149011612 %
+Luminance: 200, ratio: 0.10000000149011612 %
+Luminance: 201, ratio: 0.4000000059604645 %
+Luminance: 202, ratio: 1.600000023841858 %
+Luminance: 205, ratio: 0.30000001192092896 %
+Luminance: 206, ratio: 0.20000000298023224 %
+Luminance: 207, ratio: 0.20000000298023224 %
