@@ -70,6 +70,8 @@ class Rectangle:
         fig, ax = plt.subplots()
         ax.set_xlim(0, self.width)
         ax.set_ylim(0, self.height)
+        ax.axis("off")
+
 
         for shape in self.shapes:
             shape_type = shape["type"]
@@ -93,7 +95,7 @@ class Rectangle:
                 ax.add_patch(rect)
 
         plt.gca().set_aspect('equal', adjustable='box')
-        plt.savefig('pattern/not_rotation.png')
+        # plt.savefig('pattern/not_rotation.png')
         plt.show()
 
 
@@ -126,7 +128,8 @@ if __name__ == '__main__':
     WIDTH, HEIGHT = 21*100, 29*100
     X_RANGE, Y_RANGE = WIDTH, HEIGHT
     SEED = 10
-    SIZE = 1*100
+    SIZE = 0.3*100
+    NUM = 500
     SHAPE_TYPE = "rectangle"
 
     np.random.seed(SEED)
@@ -135,7 +138,7 @@ if __name__ == '__main__':
     # Create a rectangle object
     main_rectangle = Rectangle(width=WIDTH, height=HEIGHT)
 
-    for _ in range(100):
+    for _ in range(NUM):
         x, y = generate_random_point(X_RANGE, Y_RANGE, SEED)
 
         if SHAPE_TYPE == "circle":
