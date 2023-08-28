@@ -12,16 +12,18 @@ import os
 # Left = int((WIDTH - WIDTH_W) / 2)
 # Right = int((WIDTH + WIDTH_W) / 2)
 
+# (変更が必要な部分)
 # 検証用紙の切り抜き部分
 Top = 450
 Bottom = 550
 Left = 920
 Right = 1100
 
-
+# (変更が必要な部分)
 # 画像ファイルが格納されているディレクトリのパス
 image_dir = "disparitymap_0828"
 
+# (変更が必要な部分)
 # 画像の出力先のディレクトリのパス
 output_dir = "image-processing"
 
@@ -35,7 +37,7 @@ image_files = [f for f in os.listdir(image_dir) if f.endswith(image_extension)]
 for image_file in image_files:
     image_path = os.path.join(image_dir, image_file)
     image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
-    
+
     if image is not None:
         img_temp = image[Top:Bottom, Left:Right]   # img[top : bottom, left : right]
 
