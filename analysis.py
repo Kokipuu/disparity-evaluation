@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-dir_path = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/data-processing/'
+dir_path = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/data-processing/'  # add your path
 image_path = 'ra_and_shu_pattern.png'
 path_name = dir_path + image_path
 
