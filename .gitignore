@@ -4,3 +4,7 @@
 /image-processing/
 /percentage/
 /pattern/
+*.png
+analysis.py
+generate-pattern.py
+image-cut.py
