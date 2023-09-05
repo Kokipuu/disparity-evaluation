@@ -15,7 +15,7 @@ def generate_raw(file_path, output_folder):
     # リスト内の画像ファイルを順に処理
     for image_file in image_files:
         image_path = os.path.join(file_path, image_file)
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
 
         if image is not None:
             # 出力する画像の名前
@@ -42,7 +42,7 @@ def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
     # リスト内の画像ファイルを順に処理
     for image_file in image_files:
         image_path = os.path.join(image_file_path, image_file)
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
 
         if image is not None:
             # 画像のトリミング
@@ -75,11 +75,11 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
         # 読み込む画像のディレクトリ
         image_path = os.path.join(image_cut_file_path, image_file)
         # 画像の読み込み
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
         
         if image is not None:
             # ヒストグラムの作成
-            image_hist = cv.calcHist([image], [0], None, [256], [0, 256])
+            image_hist = cv.calcHist([image], [0], None, [65536], [0, 65536])
             fig, ax = plt.subplots(dpi=100)
             plt.plot(image_hist)
 
@@ -91,7 +91,6 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             plt.savefig(output_path_image)
 
 
-
             # 画像の平均値
             img_average = np.average(image)
             # 画像の標準偏差
@@ -99,10 +98,10 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
 
             # 輝度の割合を配列に保存
             luminance_sum = np.sum(image_hist)
-            luminance_ratio = np.zeros(256)
+            luminance_ratio = np.zeros(65536)
             for i in range(len(luminance_ratio)):
                 temp_ratio = image_hist[i]*100/luminance_sum
-                luminance_ratio[i] = np.round(temp_ratio,1)
+                luminance_ratio[i] = np.round(temp_ratio,3)  # 少数第一位だと誤差が大きいので3ぐらいがいい
 
             # ゼロを取り除いたときの配列番号と値を表示
             non_zero_indices, non_zero_values = remove_zeros_and_get_indices(luminance_ratio)

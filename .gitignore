@@ -2,3 +2,5 @@
 /pattern/
 /test_data/
 /__pycache__/
+hoge.py
+/hoge/
