@@ -1,10 +1,2 @@
-/ceiling_disparity_map/
-/data-processing/
-/histgram/
-/image-processing/
-/percentage/
-/pattern/
 *.png
-analysis.py
-generate-pattern.py
-image-cut.py
+/pattern/

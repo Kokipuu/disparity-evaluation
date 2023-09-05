@@ -19,7 +19,7 @@ date_str = current_datetime.strftime('%Y-%m-%d')
 time_str = current_datetime.strftime('%H-%M-%S')
 
 # フォルダを生成するディレクトリのパスを指定
-output_directory = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/hoge/'  # your path
+output_directory = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/disparity_evaluation/pattern/'  # your path
 
 # フォルダ名を生成
 folder_name = f'{date_str}_{time_str}'
