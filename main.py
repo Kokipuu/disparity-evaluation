@@ -4,7 +4,6 @@
 
 import os
 import sys
-import matplotlib.pyplot as plt
 import datetime
 import method
 
