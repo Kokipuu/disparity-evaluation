@@ -90,17 +90,21 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # 画像の保存
             plt.savefig(output_path_image)
 
-            # 画像の平均値
+            # 輝度の平均値
             img_average = np.average(image)
-            # 画像の標準偏差
+            # 輝度の標準偏差
             img_std = np.std(image)
+            #輝度基準以下
+            luminance_criteria = np.all(image <= 4000)
+            luminance_criteria_sum = np.sum(luminance_criteria)
 
             # 輝度の割合を配列に保存
             luminance_sum = np.sum(image_hist)
             luminance_ratio = np.zeros(65536)
             for i in range(len(luminance_ratio)):
                 temp_ratio = image_hist[i]*100/luminance_sum
-                luminance_ratio[i] = np.round(temp_ratio,3)  # 少数第一位だと誤差が大きいので3ぐらいがいい
+                luminance_ratio[i] = np.round(temp_ratio,3)  # 小数第一位だと誤差が大きいので3ぐらいがいい
+
 
             # ゼロを取り除いたときの配列番号と値を表示
             non_zero_indices, non_zero_values = remove_zeros_and_get_indices(luminance_ratio)
@@ -111,8 +115,8 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # raw dataの書き込み
             with open(output_path_csv, 'w', newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation'])
-                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std])
+                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation','under_criteria%'])
+                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std,luminance_criteria_sum])
                 for index, value in zip(non_zero_indices[1:], non_zero_values[1:]):
                     writer.writerow([index, value])
 
@@ -120,7 +124,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             print("Error reading image:", image_file)
 
 
-# 輝度値の割合
+# 輝度値の割合(0%をcsvから除外)
 def remove_zeros_and_get_indices(arr):
     non_zero_values = []
     non_zero_indices = []
