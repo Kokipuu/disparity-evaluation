@@ -90,7 +90,6 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # 画像の保存
             plt.savefig(output_path_image)
 
-
             # 画像の平均値
             img_average = np.average(image)
             # 画像の標準偏差
