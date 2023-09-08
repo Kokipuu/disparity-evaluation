@@ -15,7 +15,7 @@ def generate_raw(file_path, output_folder):
     # リスト内の画像ファイルを順に処理
     for image_file in image_files:
         image_path = os.path.join(file_path, image_file)
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
 
         if image is not None:
             # 出力する画像の名前
@@ -42,7 +42,7 @@ def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
     # リスト内の画像ファイルを順に処理
     for image_file in image_files:
         image_path = os.path.join(image_file_path, image_file)
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
 
         if image is not None:
             # 画像のトリミング
@@ -75,11 +75,11 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
         # 読み込む画像のディレクトリ
         image_path = os.path.join(image_cut_file_path, image_file)
         # 画像の読み込み
-        image = cv.imread(image_path, cv.IMREAD_GRAYSCALE)
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
         
         if image is not None:
             # ヒストグラムの作成
-            image_hist = cv.calcHist([image], [0], None, [256], [0, 256])
+            image_hist = cv.calcHist([image], [0], None, [65536], [0, 65536])
             fig, ax = plt.subplots(dpi=100)
             plt.plot(image_hist)
 
@@ -90,19 +90,26 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # 画像の保存
             plt.savefig(output_path_image)
 
-
-
-            # 画像の平均値
+            # 輝度の平均値
             img_average = np.average(image)
-            # 画像の標準偏差
+            # 輝度の標準偏差
             img_std = np.std(image)
+            #輝度基準以下
+            luminance_criteria_sum = 0
+            flat_image = image.flatten()
+            j_max = len(flat_image)
+            for j in range(j_max):
+                if flat_image[j] <= 4000:
+                    luminance_criteria_sum += 1
+            criteria_ratio = luminance_criteria_sum / j_max * 100
 
             # 輝度の割合を配列に保存
             luminance_sum = np.sum(image_hist)
-            luminance_ratio = np.zeros(256)
+            luminance_ratio = np.zeros(65536)
             for i in range(len(luminance_ratio)):
                 temp_ratio = image_hist[i]*100/luminance_sum
-                luminance_ratio[i] = np.round(temp_ratio,1)
+                luminance_ratio[i] = np.round(temp_ratio,3)  # 小数第一位だと誤差が大きいので3ぐらいがいい
+
 
             # ゼロを取り除いたときの配列番号と値を表示
             non_zero_indices, non_zero_values = remove_zeros_and_get_indices(luminance_ratio)
@@ -113,8 +120,8 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # raw dataの書き込み
             with open(output_path_csv, 'w', newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation'])
-                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std])
+                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation','under_criteria%'])
+                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std,criteria_ratio])
                 for index, value in zip(non_zero_indices[1:], non_zero_values[1:]):
                     writer.writerow([index, value])
 
@@ -122,7 +129,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             print("Error reading image:", image_file)
 
 
-# 輝度値の割合
+# 輝度値の割合(0%をcsvから除外)
 def remove_zeros_and_get_indices(arr):
     non_zero_values = []
     non_zero_indices = []
