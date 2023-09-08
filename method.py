@@ -95,8 +95,13 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # 輝度の標準偏差
             img_std = np.std(image)
             #輝度基準以下
-            luminance_criteria = np.all(image <= 4000)
-            luminance_criteria_sum = np.sum(luminance_criteria)
+            luminance_criteria_sum = 0
+            flat_image = image.flatten()
+            j_max = len(flat_image)
+            for j in range(j_max):
+                if flat_image[j] <= 4000:
+                    luminance_criteria_sum += 1
+            criteria_ratio = luminance_criteria_sum / j_max * 100
 
             # 輝度の割合を配列に保存
             luminance_sum = np.sum(image_hist)
@@ -116,7 +121,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             with open(output_path_csv, 'w', newline="") as f:
                 writer = csv.writer(f)
                 writer.writerow(['luminance', 'percentage', 'average', 'standard deviation','under_criteria%'])
-                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std,luminance_criteria_sum])
+                writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std,criteria_ratio])
                 for index, value in zip(non_zero_indices[1:], non_zero_values[1:]):
                     writer.writerow([index, value])
 
