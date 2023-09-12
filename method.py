@@ -64,7 +64,7 @@ def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
 ###############################################################################################################
 
 
-def average_image(image_cut_file_path, output_folder):
+def average_image(image_cut_file_path):
 
     # 画像ファイルの拡張子
     image_extension = ".png"
