@@ -64,28 +64,26 @@ def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
 ###############################################################################################################
 
 
-def average_image(image_cut_file_path):
+def generate_concat_image(image_cut_file_path, output_folder):
 
     # 画像ファイルの拡張子
     image_extension = ".png"
     # ディレクトリ内の画像ファイルのリストを取得
     image_files = [f for f in os.listdir(image_cut_file_path) if f.endswith(image_extension)]
 
-    image_value_all = []
-
-    # リスト内の画像ファイルを順に処理
+    image_path_ = os.path.join(image_cut_file_path, image_files[0])
+    image_ = cv.imread(image_path_, cv.IMREAD_UNCHANGED)
+    concat_image = image_
     for image_file in image_files:
-        # 読み込む画像のディレクトリ
         image_path = os.path.join(image_cut_file_path, image_file)
-        # 画像の読み込み
-        image = np.array(Image.open(image_path))
-        image = image.flatten()
-
-        image_value_all.append(image)
-
-    image_value_all = image_value_all.flatten()
-
-    return image_value_all
+        image = cv.imread(image_path, cv.IMREAD_UNCHANGED)
+        concat_image = cv.hconcat([concat_image, image])
+    
+    # 出力する画像の名前
+    output_filename = "hoge.png"
+    # 出力する画像のパス
+    output_path_image = os.path.join(output_folder, output_filename)
+    cv.imwrite(output_path_image, concat_image)
 
 
 def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
