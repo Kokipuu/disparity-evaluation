@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import csv
 import cv2 as cv
 import numpy as np
+from PIL import Image
 
 
 def generate_raw(file_path, output_folder):
@@ -61,6 +62,30 @@ def image_cut(image_file_path, output_folder, Top, Bottom, Left, Right):
 
 
 ###############################################################################################################
+
+
+def average_image(image_cut_file_path, output_folder):
+
+    # 画像ファイルの拡張子
+    image_extension = ".png"
+    # ディレクトリ内の画像ファイルのリストを取得
+    image_files = [f for f in os.listdir(image_cut_file_path) if f.endswith(image_extension)]
+
+    image_value_all = []
+
+    # リスト内の画像ファイルを順に処理
+    for image_file in image_files:
+        # 読み込む画像のディレクトリ
+        image_path = os.path.join(image_cut_file_path, image_file)
+        # 画像の読み込み
+        image = np.array(Image.open(image_path))
+        image = image.flatten()
+
+        image_value_all.append(image)
+
+    image_value_all = image_value_all.flatten()
+
+    return image_value_all
 
 
 def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
