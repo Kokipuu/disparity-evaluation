@@ -16,14 +16,11 @@ date_str = current_datetime.strftime('%Y-%m-%d')
 time_str = current_datetime.strftime('%H-%M-%S')
 
 # フォルダを生成するディレクトリのパスを指定
-output_directory = 'C:/Users/puu02/Documents/03_JobHanting/summer_intern/Bosch/programm/disparity_evaluation/pattern/'  # your path
-
+output_directory = './pattern'
 # フォルダ名を生成
 folder_name = f'{date_str}_{time_str}'
-
 # フォルダの絶対パスを生成
 folder_path = os.path.join(output_directory, folder_name)
-
 # フォルダを生成
 os.makedirs(folder_path)
 
