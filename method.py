@@ -107,7 +107,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             plt.plot(image_hist)
 
             # 出力する画像の名前
-            output_filename = f"{image_file}"
+            output_filename = "histogram_average"
             # 出力する画像のパス
             output_path_image = os.path.join(output_folder_1, output_filename)
             # 画像の保存
@@ -137,7 +137,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # ゼロを取り除いたときの配列番号と値を表示
             non_zero_indices, non_zero_values = remove_zeros_and_get_indices(luminance_ratio)
 
-            csv_filename = f"{image_file}" + ".csv"
+            csv_filename = "data_average" + ".csv"
             # 出力する画像のパス
             output_path_csv = os.path.join(output_folder_2, csv_filename)
             # raw dataの書き込み

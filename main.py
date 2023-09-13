@@ -37,13 +37,9 @@ if __name__ == "__main__":
     Left = 920
     Right = 1100
 
-    # ppath = 'test_data'
     
     # ドラッグ&ドロップされたパスを処理
     for path in sys.argv[1:]:
-        # raw 画像の生成
-        # method.generate_raw(path, folder_path_raw)
-
         # ディレクトリ取得
         dic_files = [f for f in os.listdir(path)]
         for dic in dic_files:
