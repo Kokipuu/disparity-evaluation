@@ -32,10 +32,10 @@ os.makedirs(folder_path)
 if __name__ == "__main__":
     
     """検証用紙の切り抜き部分(要調整)"""
-    Top = 450
-    Bottom = 550
-    Left = 920
-    Right = 1100
+    Top = 465
+    Bottom = 560
+    Left = 845
+    Right = 1010
 
     
     # ドラッグ&ドロップされたパスを処理
