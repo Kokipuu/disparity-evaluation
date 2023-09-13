@@ -3,41 +3,6 @@ import matplotlib.pyplot as plt
 import csv
 import cv2 as cv
 import numpy as np
-from PIL import Image
-
-
-
-def generate_path(file_path, folder_path):
-    # ディレクトリ取得
-    dic_files = [f for f in os.listdir(file_path)]
-
-    for dic in dic_files:
-        dic_path = os.path.join(file_path, dic)
-        # 出力するディレクトリの名前
-        output_filename = f"{dic}"
-        # 出力するディレクトリのパス
-        output_path_name = os.path.join(folder_path, output_filename)
-
-        # フォルダ名を生成
-        folder_name_raw = 'disparity_map_raw'
-        folder_name_cut = 'disparity_map_cut'
-        folder_name_hist = 'disparity_map_hist'
-        folder_name_data = 'disparity_map_data'
-        folder_name_concat = 'disparity_map_cancat'
-
-        # フォルダのパスを生成
-        folder_path_raw = os.path.join(output_path_name, folder_name_raw)
-        folder_path_cut = os.path.join(output_path_name, folder_name_cut)
-        folder_path_hist = os.path.join(output_path_name, folder_name_hist)
-        folder_path_data = os.path.join(output_path_name, folder_name_data)
-        folder_path_concat = os.path.join(output_path_name, folder_name_concat)
-
-        # フォルダを生成
-        os.makedirs(folder_path_raw)
-        os.makedirs(folder_path_cut)
-        os.makedirs(folder_path_hist)
-        os.makedirs(folder_path_data)
-        os.makedirs(folder_path_concat)
 
 
 
@@ -115,7 +80,7 @@ def generate_concat_image(image_cut_file_path, output_folder):
         concat_image = cv.hconcat([concat_image, image])
     
     # 出力する画像の名前
-    output_filename = "hoge.png"
+    output_filename = "concat_all_image.png"
     # 出力する画像のパス
     output_path_image = os.path.join(output_folder, output_filename)
     cv.imwrite(output_path_image, concat_image)
@@ -178,7 +143,7 @@ def generate_histgram(image_cut_file_path, output_folder_1, output_folder_2):
             # raw dataの書き込み
             with open(output_path_csv, 'w', newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation','under_criteria%'])
+                writer.writerow(['luminance', 'percentage', 'average', 'standard deviation','criteria_4000'])
                 writer.writerow([non_zero_indices[0], non_zero_values[0], img_average, img_std,criteria_ratio])
                 for index, value in zip(non_zero_indices[1:], non_zero_values[1:]):
                     writer.writerow([index, value])
