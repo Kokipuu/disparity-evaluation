@@ -6,6 +6,41 @@ import numpy as np
 from PIL import Image
 
 
+
+def generate_path(file_path, folder_path):
+    # ディレクトリ取得
+    dic_files = [f for f in os.listdir(file_path)]
+
+    for dic in dic_files:
+        dic_path = os.path.join(file_path, dic)
+        # 出力するディレクトリの名前
+        output_filename = f"{dic}"
+        # 出力するディレクトリのパス
+        output_path_name = os.path.join(folder_path, output_filename)
+
+        # フォルダ名を生成
+        folder_name_raw = 'disparity_map_raw'
+        folder_name_cut = 'disparity_map_cut'
+        folder_name_hist = 'disparity_map_hist'
+        folder_name_data = 'disparity_map_data'
+        folder_name_concat = 'disparity_map_cancat'
+
+        # フォルダのパスを生成
+        folder_path_raw = os.path.join(output_path_name, folder_name_raw)
+        folder_path_cut = os.path.join(output_path_name, folder_name_cut)
+        folder_path_hist = os.path.join(output_path_name, folder_name_hist)
+        folder_path_data = os.path.join(output_path_name, folder_name_data)
+        folder_path_concat = os.path.join(output_path_name, folder_name_concat)
+
+        # フォルダを生成
+        os.makedirs(folder_path_raw)
+        os.makedirs(folder_path_cut)
+        os.makedirs(folder_path_hist)
+        os.makedirs(folder_path_data)
+        os.makedirs(folder_path_concat)
+
+
+
 def generate_raw(file_path, output_folder):
 
     # 画像ファイルの拡張子
