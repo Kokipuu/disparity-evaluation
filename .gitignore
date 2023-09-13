@@ -4,3 +4,6 @@
 /__pycache__/
 hoge.py
 /hoge/
+/build/
+/dist/
+main.spec
