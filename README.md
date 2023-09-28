@@ -3,11 +3,13 @@
 解析したいDisparity mapが入っているフォルダを直接, main.py にドラッグ&ドロップする。
 ステレオカメラから出力される複数枚の同じ状態のDisparity mapのフォルダを入力することで，
 日付フォルダが生成され，その中に
+
     1. disparity_map_raw: inputしたDisparity map
     2. disparity_map_cut: inputしたDisparity mapの有効範囲を切り出したDisparity
     3. disparity_map_concat:切り出したDisparity mapを結合したDisparity map
     4. disparity_mao_hist: 結合したDisparity mapのヒストグラム
     5. disparity_mao_data: 結合したDisparity mapの輝度値の割合，標準偏差，平均，輝度値4096以下の割合
+
 が生成される．
 
 ## 1. Disparity mapの前処理
